@@ -1,0 +1,163 @@
+:root {
+  --color-light: #B8D8D8;
+  --color-medium: #7A9E9F;
+  --color-dark: #4F6367;
+  --color-light-cream: #EEF5DB;
+  --color-accent: #FE5F55;
+  --color-text: #4F6367;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-light-cream);
+  color: var(--color-text);
+  padding: 0;
+  margin: 0;
+}
+
+.landing {
+  height: 100vh;
+  background: linear-gradient(to bottom right, var(--color-light), var(--color-medium));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.landing h1 {
+  font-size: 3rem;
+  animation: slideUp 1.5s ease-out;
+  color: var(--color-dark);
+}
+
+.family-tree-section {
+  padding: 60px 15px 120px;
+  background: var(--color-light-cream);
+  animation: fadeIn 1.5s ease-in;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+/* Grouping box with border and background */
+.tree-group {
+  border: 3px solid var(--color-medium);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 60px;
+  background-color: var(--color-light);
+}
+
+/* Flex container for rows */
+.tree-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  padding-bottom: 50px;
+  flex-wrap: nowrap;
+}
+
+/* Individual member block */
+.tree-node {
+  background: var(--color-light-cream);
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgba(79, 99, 103, 0.3);
+  position: relative;
+  flex-direction: row;
+  z-index: 2;
+  border: 2px solid var(--color-medium);
+  transition: box-shadow 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* fix text overflow and wrapping */
+  white-space: normal;
+}
+
+.tree-node:hover {
+  box-shadow: 2px 4px 15px rgba(254, 95, 85, 0.6);
+  border-color: var(--color-accent);
+}
+
+/* Profile image placeholder - square with slight rounding */
+.tree-img {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-dark);
+  margin-right: 15px;
+  flex-shrink: 0;
+  border: 3px solid var(--color-medium);
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Vertical lines under nodes connecting down */
+.tree-node::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  width: 3px;
+  height: 50px;
+  background: var(--color-dark);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Last generation nodes: remove downward lines */
+.tree-row:last-child .tree-node::before {
+  content: none;
+}
+
+/* Horizontal connection lines between siblings */
+.tree-row::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  border-bottom: 3px solid var(--color-dark);
+  z-index: 0;
+}
+
+/* Group title styling */
+.generation-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-dark);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
